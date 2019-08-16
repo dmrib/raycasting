@@ -17,6 +17,7 @@ class Scene {
         // store components
         this.source = createVector(mouseX, mouseY)
         this.rays = this.createRays(interval);
+        this.walls = this.createWalls(5);
     }
 
     /**
@@ -44,6 +45,38 @@ class Scene {
     }
 
     /**
+     * I create this scene walls.
+     * 
+     * Args:
+     *  n(number): number of created walls
+     * 
+     * Returns:
+     *  walls(Array): array of created walls
+     */
+    createWalls(n)
+    {
+        // create empty walls array
+        let walls = [];
+
+        // create walls and add to array
+        for(let i=0; i<n; i++)
+        {
+            const beginX = int(random(100, width - 100));
+            const beginY = int(random(100, height - 100));
+            const endX = int(random(100, width - 100));
+            const endY = int(random(100, height - 100));
+
+            let begin = createVector(beginX, beginY);
+            let end = createVector(endX, endY);
+
+            walls.push(new Wall(begin, end));
+        }
+
+        // return them
+        return walls;
+    }
+
+    /**
      * I set my light source position.
      * 
      * Args:
@@ -66,6 +99,12 @@ class Scene {
      */
     render()
     {
+        // render each wall
+        for(let wall of this.walls)
+        {
+            wall.render();
+        }
+
         // render each light ray
         for(let ray of this.rays)
         {
