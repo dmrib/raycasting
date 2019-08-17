@@ -17,7 +17,6 @@ class Ray {
     {
         // store components
         this.direction = p5.Vector.fromAngle(radians(angle));
-        this.color = [255, 255, 255, 100];
     }
 
     /**
@@ -32,7 +31,7 @@ class Ray {
     render(source, intersection)
     {
         // render ray representation
-        stroke(...this.color);
+        stroke(...LIGHT);
         line(source.x, source.y, intersection.x, intersection.y);
     }
 }

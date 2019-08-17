@@ -27,7 +27,7 @@ class Wall {
      */
     render()
     {
-        stroke(255);
+        stroke(...WALLS);
         strokeWeight(2);
         line(this.begin.x, this.begin.y, this.end.x, this.end.y);
     }
@@ -45,6 +45,25 @@ class Wall {
     {
         // create empty walls array
         let walls = [];
+
+        let begin;
+        let end;
+
+        begin = createVector(0, 0);
+        end = createVector(width, 0);
+        walls.push(new Wall(begin, end));
+
+        begin = createVector(width, 0);
+        end = createVector(width, height);
+        walls.push(new Wall(begin, end));
+
+        begin = createVector(width, height);
+        end = createVector(0, height);
+        walls.push(new Wall(begin, end));
+
+        begin = createVector(0, height);
+        end = createVector(0, 0);
+        walls.push(new Wall(begin, end));
 
         // create walls and add to array
         for(let i=0; i<n; i++)

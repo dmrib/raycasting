@@ -113,6 +113,11 @@ class Source {
      */
     render(walls)
     {
+        // render light origin
+        noStroke();
+        fill(...LIGHT);
+        ellipse(this.origin.x, this.origin.y, 10, 10);
+
         // render each light ray
         for (let ray of this.rays)
         {

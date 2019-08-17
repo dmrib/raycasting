@@ -7,6 +7,10 @@ let source;
 // create walls array
 let walls = [];
 
+// color definitions
+const LIGHT = [227, 48, 48, 100];
+const WALLS = [50];
+
 /**
  * p5.js setup function.
  */
@@ -26,7 +30,7 @@ function setup() {
  */
 function draw() {
     // paint background
-    background(0);
+    background(200);
 
     // update light source location
     source.setSource(mouseX, mouseY);
