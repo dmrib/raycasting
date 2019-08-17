@@ -1,8 +1,11 @@
 // interval between light rays in degrees
 const INTERVAL = 1;
 
-// create scene
-let scene;
+// create light source scene
+let source;
+
+// create walls array
+let walls = [];
 
 /**
  * p5.js setup function.
@@ -11,8 +14,11 @@ function setup() {
     // create drawing canvas
     createCanvas(800, 800);
 
-    // setup scene
-    scene = new Scene(1);
+    // setup light source
+    source = new Source(1);
+
+    // setup walls
+    walls = Wall.createWalls(10);
 }
 
 /**
@@ -23,8 +29,14 @@ function draw() {
     background(0);
 
     // update light source location
-    scene.setSource(mouseX, mouseY);
+    source.setSource(mouseX, mouseY);
 
-    // render scene
-    scene.render();
+    // render light source
+    source.render(walls);
+
+    // render each wall
+    for(let wall of walls)
+    {
+        wall.render();
+    }
 }

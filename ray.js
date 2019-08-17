@@ -16,7 +16,7 @@ class Ray {
     constructor(angle)
     {
         // store components
-        this.direction = p5.Vector.fromAngle(radians(angle), 250);
+        this.direction = p5.Vector.fromAngle(radians(angle));
         this.color = [255, 255, 255, 100];
     }
 
@@ -29,13 +29,10 @@ class Ray {
      * Returns:
      *  undefined.
      */
-    render(source)
+    render(source, intersection)
     {
-        // calculate ray end point
-        const end = p5.Vector.add(source, this.direction);
-        
         // render ray representation
         stroke(...this.color);
-        line(source.x, source.y, end.x, end.y);
+        line(source.x, source.y, intersection.x, intersection.y);
     }
 }
