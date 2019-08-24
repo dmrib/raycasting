@@ -34,7 +34,7 @@ class Source {
         let rays = [];
 
         // create rays along 360 degrees
-        for(let i=0; i<60; i+=interval)
+        for(let i=0; i<45; i+=interval)
         {
             rays.push(new Ray(i));
         }
@@ -171,6 +171,8 @@ class Source {
         fill(...LIGHT);
         ellipse(this.origin.x, this.origin.y, 10, 10);
 
+        const sliceWidth = DIMENSION / this.rays.length;
+
         // cast rays
         const cast = this.cast(walls);
 
@@ -180,7 +182,22 @@ class Source {
             // intersection was found: render light ray
             if(cast.ends[i])
             {
+
+                // render raycasting animation
                 this.rays[i].render(this.origin, cast.ends[i]);
+
+                // compute slice brightness and height
+                const brightness = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, 0, BACKGROUND);
+                const boundaryHeight = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, DIMENSION, 0);
+
+                // render visualization
+                fill(brightness);
+                noStroke();
+                push();
+                translate(DIMENSION, 0);
+                rectMode(CENTER);
+                rect(i * sliceWidth + sliceWidth / 2, DIMENSION / 2, sliceWidth, boundaryHeight);
+                pop();
             }
         }
     }
