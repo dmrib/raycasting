@@ -34,7 +34,7 @@ class Source {
         let rays = [];
 
         // create rays along 360 degrees
-        for(let i=0; i<SIGHT; i+=interval)
+        for(let i=-SIGHT/2; i<SIGHT/2; i+=interval)
         {
             rays.push(new Ray(i));
         }
@@ -155,7 +155,9 @@ class Source {
                 {
 
                     // compute distance between light source and intersection
-                    const distance = intersection.dist(this.origin)
+                    let distance = intersection.dist(this.origin)
+                    const angle = ray.direction.heading() - this.rays[int(this.rays.length/2)].direction.heading();
+                    distance *= cos(angle);
 
                     // intersection is closest: update
                     if(distance < nearest)
@@ -211,7 +213,7 @@ class Source {
                 this.rays[i].render(this.origin, cast.ends[i]);
 
                 // compute slice brightness and height
-                const brightness = map(Math.min(cast.distances[i] * cast.distances[i], DIMENSION * DIMENSION), 0, DIMENSION * DIMENSION, 255, 0);
+                const brightness = map(Math.min(cast.distances[i] * cast.distances[i], DIMENSION * DIMENSION), 0, DIMENSION * DIMENSION, 200, 0);
                 const boundaryHeight = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, DIMENSION, 0);
 
                 // render visualization
