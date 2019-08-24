@@ -197,7 +197,7 @@ class Source {
         push();
         translate(DIMENSION, 0);
         rectMode(CORNER);
-        fill(255);
+        fill(BACKGROUND);
         rect(0, 0, DIMENSION, DIMENSION);
         pop();
 
@@ -211,7 +211,7 @@ class Source {
                 this.rays[i].render(this.origin, cast.ends[i]);
 
                 // compute slice brightness and height
-                const brightness = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, 255, 0);
+                const brightness = map(Math.min(cast.distances[i] * cast.distances[i], DIMENSION * DIMENSION), 0, DIMENSION * DIMENSION, 255, 0);
                 const boundaryHeight = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, DIMENSION, 0);
 
                 // render visualization
@@ -220,7 +220,7 @@ class Source {
                 push();
                 translate(DIMENSION, 0);
                 rectMode(CENTER);
-                rect(i * sliceWidth + sliceWidth / 2, DIMENSION / 2, sliceWidth, boundaryHeight);
+                rect(i * sliceWidth + sliceWidth / 2, DIMENSION / 2, sliceWidth + 1, boundaryHeight);
                 pop();
             }
         }

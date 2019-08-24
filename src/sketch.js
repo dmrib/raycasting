@@ -17,7 +17,7 @@ const DIMENSION = 800
 // color definitions
 const LIGHT = [227, 48, 48, 100];
 const WALLS = [50];
-const BACKGROUND = 150;
+const BACKGROUND = 120;
 
 /**
  * p5.js setup function.
@@ -30,7 +30,7 @@ function setup() {
     source = new Source(1);
 
     // setup walls
-    walls = Wall.createWalls(10);
+    walls = Wall.createWalls(8);
 }
 
 /**
