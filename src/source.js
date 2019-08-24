@@ -34,7 +34,7 @@ class Source {
         let rays = [];
 
         // create rays along 360 degrees
-        for(let i=0; i<45; i+=interval)
+        for(let i=0; i<SIGHT; i+=interval)
         {
             rays.push(new Ray(i));
         }
@@ -103,6 +103,23 @@ class Source {
 
         // no intersection: fail
         return;
+    }
+
+    /**
+     * I rotate myself.
+     * 
+     * Args:
+     *  angle(number): rotation angle
+     * 
+     * Returns:
+     *  undefined.
+     */
+    rotate(angle)
+    {
+        for(let ray of this.rays)
+        {
+            ray.rotate(angle);
+        }
     }
 
     /**
@@ -176,18 +193,25 @@ class Source {
         // cast rays
         const cast = this.cast(walls);
 
+        // fill renderization background black
+        push();
+        translate(DIMENSION, 0);
+        rectMode(CORNER);
+        fill(255);
+        rect(0, 0, DIMENSION, DIMENSION);
+        pop();
+
         // for each ray
         for(let i=0; i<this.rays.length; i++)
         {
             // intersection was found: render light ray
             if(cast.ends[i])
             {
-
                 // render raycasting animation
                 this.rays[i].render(this.origin, cast.ends[i]);
 
                 // compute slice brightness and height
-                const brightness = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, 0, BACKGROUND);
+                const brightness = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, 255, 0);
                 const boundaryHeight = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, DIMENSION, 0);
 
                 // render visualization

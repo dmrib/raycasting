@@ -19,6 +19,19 @@ class Ray {
     }
 
     /**
+     * I rotate myself.
+     * 
+     * Args:
+     *  angle(number): rotation angle
+     * Returns:
+     *  undefined.
+     */
+    rotate(angle)
+    {
+        this.direction.rotate(angle);
+    }
+
+    /**
      * I draw this ray representation.
      * 
      * Args:

@@ -1,11 +1,15 @@
 // interval between light rays in degrees
-const INTERVAL = 1;
+const INTERVAL = 0.1;
+const SIGHT = 60;
 
 // create light source scene
 let source;
 
 // create walls array
 let walls = [];
+
+// rotation direction
+let direction = 1;
 
 // dimensions
 const DIMENSION = 800
@@ -30,11 +34,27 @@ function setup() {
 }
 
 /**
+ * p5.js key pressed callback.
+ */
+function keyPressed()
+{
+    if(key === 'r')
+    {
+        direction *= -1;
+    }
+}
+
+/**
  * p5.js loop.
  */
 function draw() {
     // paint background
     background(BACKGROUND);
+
+    if(mouseIsPressed)
+    {
+        source.rotate(direction * 0.02);
+    }
 
     // update light source location
     source.setSource(mouseX, mouseY);
