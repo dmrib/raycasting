@@ -34,7 +34,7 @@ class Source {
         let rays = [];
 
         // create rays along 360 degrees
-        for(let i=0; i<360; i+=interval)
+        for(let i=0; i<60; i+=interval)
         {
             rays.push(new Ray(i));
         }
@@ -106,17 +106,19 @@ class Source {
     }
 
     /**
-     * I render a representation of this scene.
+     * I cast my light rays.
+     * 
+     * Args:
+     *  walls(Array): scene walls
      * 
      * Returns:
-     *  undefined.
+     *  report(Object): rays intersections distances and points
      */
-    render(walls)
+    cast(walls)
     {
-        // render light origin
-        noStroke();
-        fill(...LIGHT);
-        ellipse(this.origin.x, this.origin.y, 10, 10);
+        // setup cast reports arrays
+        let distances = [];
+        let ends = [];
 
         // render each light ray
         for (let ray of this.rays)
@@ -132,7 +134,8 @@ class Source {
                 const intersection = this.intersects(ray, wall);
 
                 // ray and wall intersects: test it for nearest intersection
-                if(intersection){
+                if(intersection)
+                {
 
                     // compute distance between light source and intersection
                     const distance = intersection.dist(this.origin)
@@ -146,13 +149,40 @@ class Source {
                 }
             }
 
+            // update ray results in report
+            distances.push(nearest);
+            ends.push(end);
+        }
+
+        // return report
+        return {distances, ends};
+    }
+
+    /**
+     * I render a representation of this scene.
+     * 
+     * Returns:
+     *  undefined.
+     */
+    render(walls)
+    {
+        // render light origin
+        noStroke();
+        fill(...LIGHT);
+        ellipse(this.origin.x, this.origin.y, 10, 10);
+
+        // cast rays
+        const cast = this.cast(walls);
+
+        // for each ray
+        for(let i=0; i<this.rays.length; i++)
+        {
             // intersection was found: render light ray
-            if(end)
+            if(cast.ends[i])
             {
-                ray.render(this.origin, end);
+                this.rays[i].render(this.origin, cast.ends[i]);
             }
         }
     }
 
-    
 }

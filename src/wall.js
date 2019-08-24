@@ -50,28 +50,28 @@ class Wall {
         let end;
 
         begin = createVector(0, 0);
-        end = createVector(width, 0);
+        end = createVector(DIMENSION, 0);
         walls.push(new Wall(begin, end));
 
-        begin = createVector(width, 0);
-        end = createVector(width, height);
+        begin = createVector(DIMENSION, 0);
+        end = createVector(DIMENSION, DIMENSION);
         walls.push(new Wall(begin, end));
 
-        begin = createVector(width, height);
-        end = createVector(0, height);
+        begin = createVector(DIMENSION, DIMENSION);
+        end = createVector(0, DIMENSION);
         walls.push(new Wall(begin, end));
 
-        begin = createVector(0, height);
+        begin = createVector(0, DIMENSION);
         end = createVector(0, 0);
         walls.push(new Wall(begin, end));
 
         // create walls and add to array
         for(let i=0; i<n; i++)
         {
-            const beginX = int(random(0, width));
-            const beginY = int(random(0, height));
-            const endX = int(random(0, width));
-            const endY = int(random(0, height));
+            const beginX = int(random(0, DIMENSION));
+            const beginY = int(random(0, DIMENSION));
+            const endX = int(random(0, DIMENSION));
+            const endY = int(random(0, DIMENSION));
 
             let begin = createVector(beginX, beginY);
             let end = createVector(endX, endY);

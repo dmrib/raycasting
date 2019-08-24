@@ -7,6 +7,9 @@ let source;
 // create walls array
 let walls = [];
 
+// dimensions
+const DIMENSION = 800
+
 // color definitions
 const LIGHT = [227, 48, 48, 100];
 const WALLS = [50];
@@ -16,7 +19,7 @@ const WALLS = [50];
  */
 function setup() {
     // create drawing canvas
-    createCanvas(800, 800);
+    createCanvas(1600, 800);
 
     // setup light source
     source = new Source(1);

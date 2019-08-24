@@ -7,8 +7,7 @@ class Ray {
      * Constructor.
      *
      * Args:
-     *  x(number): initial source x coordinate
-     *  y(number): initial source y coordinate
+     *  angle(number): casted ray angle
      * 
      * Returns:
      *  undefined.
