@@ -12,7 +12,7 @@ let walls = [];
 let direction = 1;
 
 // dimensions
-const DIMENSION = 800
+let DIMENSION;
 
 // color definitions
 const LIGHT = [227, 48, 48, 100];
@@ -24,7 +24,10 @@ const BACKGROUND = 120;
  */
 function setup() {
     // create drawing canvas
-    createCanvas(1600, 800);
+    createCanvas(windowWidth, windowHeight);
+
+    // set display dimension constant
+    DIMENSION = windowWidth / 2;
 
     // setup light source
     source = new Source(1);
