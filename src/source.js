@@ -2,13 +2,14 @@
  * Light source abstraction.
  */
 
-class Source {
+class Source
+{
     /**
      * Constructor.
-     * 
+     *
      * Args:
      *  interval(number): interval in degrees between each light ray
-     * 
+     *
      * Returns:
      *  undefined.
      */
@@ -21,10 +22,10 @@ class Source {
 
     /**
      * I setup my light rays.
-     * 
+     *
      * Args:
      *  interval(number): interval in degrees between each light source
-     * 
+     *
      * Returns:
      *  rays(Array): array with created rays
      */
@@ -45,11 +46,11 @@ class Source {
 
     /**
      * I set my light source position.
-     * 
+     *
      * Args:
      *  x(number): source x coordinate
      *  y(number): source y coordinate
-     * 
+     *
      * Returns:
      *  undefined.
      */
@@ -60,13 +61,15 @@ class Source {
 
     /**
      * I check if a light ray intersects a wall and then return the intersection point.
-     * 
+     *
      * Args:
      *  ray(Ray): light ray
      *  wall(Wall): boundary wall
-     * 
+     *
      * Returns:
      *  intersection(p5.Vector or undefined): point of intersection with wall
+     *
+     * https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
      */
     intersects(ray, wall)
     {
@@ -107,10 +110,10 @@ class Source {
 
     /**
      * I rotate myself.
-     * 
+     *
      * Args:
      *  angle(number): rotation angle
-     * 
+     *
      * Returns:
      *  undefined.
      */
@@ -124,10 +127,10 @@ class Source {
 
     /**
      * I cast my light rays.
-     * 
+     *
      * Args:
      *  walls(Array): scene walls
-     * 
+     *
      * Returns:
      *  report(Object): rays intersections distances and points
      */
@@ -179,7 +182,10 @@ class Source {
 
     /**
      * I render a representation of this scene.
-     * 
+     *
+     * Args:
+     *  walls(Array): scene walls
+     *
      * Returns:
      *  undefined.
      */
@@ -195,7 +201,7 @@ class Source {
         // cast rays
         const cast = this.cast(walls);
 
-        // fill renderization background black
+        // fill renderization background
         push();
         translate(DIMENSION, 0);
         rectMode(CORNER);

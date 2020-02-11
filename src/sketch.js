@@ -1,3 +1,7 @@
+/**
+ * State
+ */
+
 // interval between light rays in degrees
 const INTERVAL = 0.1;
 const SIGHT = 60;
@@ -22,7 +26,8 @@ const BACKGROUND = 120;
 /**
  * p5.js setup function.
  */
-function setup() {
+function setup()
+{
     // create drawing canvas
     createCanvas(windowWidth, windowHeight);
 
@@ -41,6 +46,7 @@ function setup() {
  */
 function keyPressed()
 {
+    // pressed key is 'r': reverse rotation direction
     if(key === 'r')
     {
         direction *= -1;
@@ -50,10 +56,12 @@ function keyPressed()
 /**
  * p5.js loop.
  */
-function draw() {
+function draw()
+{
     // paint background
     background(BACKGROUND);
 
+    // mouse is pressed: rotate light source
     if(mouseIsPressed)
     {
         source.rotate(direction * 0.02);

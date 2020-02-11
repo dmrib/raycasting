@@ -2,13 +2,14 @@
  * Light ray abstraction.
  */
 
-class Ray {
+class Ray
+{
     /**
      * Constructor.
      *
      * Args:
      *  angle(number): casted ray angle
-     * 
+     *
      * Returns:
      *  undefined.
      */
@@ -20,9 +21,10 @@ class Ray {
 
     /**
      * I rotate myself.
-     * 
+     *
      * Args:
      *  angle(number): rotation angle
+     *
      * Returns:
      *  undefined.
      */
@@ -33,17 +35,18 @@ class Ray {
 
     /**
      * I draw this ray representation.
-     * 
+     *
      * Args:
      *  source(p5.Vector): ray source point
-     * 
+     *  end(p5.vector): ray end point
+     *
      * Returns:
      *  undefined.
      */
-    render(source, intersection)
+    render(source, end)
     {
         // render ray representation
         stroke(...LIGHT);
-        line(source.x, source.y, intersection.x, intersection.y);
+        line(source.x, source.y, end.x, end.y);
     }
 }

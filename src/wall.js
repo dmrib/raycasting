@@ -1,14 +1,15 @@
 /**
  * Wall abstraction.
  */
+
 class Wall {
     /**
      * Constructor.
-     * 
+     *
      * Args:
      *  begin(p5.Vector): wall starting point
      *  end(p5.Vector): wall end point
-     * 
+     *
      * Returns:
      *  undefined.
      */
@@ -21,7 +22,7 @@ class Wall {
 
     /**
      * I draw this wall representation.
-     * 
+     *
      * Returns:
      *  undefined
      */
@@ -34,10 +35,10 @@ class Wall {
 
     /**
      * I create n walls and return them.
-     * 
+     *
      * Args:
      *  n(number): number of created walls
-     * 
+     *
      * Returns:
      *  walls(Array): array of created walls
      */
@@ -46,9 +47,11 @@ class Wall {
         // create empty walls array
         let walls = [];
 
+        // initialize borders begin and end
         let begin;
         let end;
 
+        // create scene borders
         begin = createVector(0, 0);
         end = createVector(DIMENSION, 0);
         walls.push(new Wall(begin, end));
