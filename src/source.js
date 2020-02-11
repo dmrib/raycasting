@@ -196,7 +196,8 @@ class Source
         fill(...LIGHT);
         ellipse(this.origin.x, this.origin.y, 10, 10);
 
-        const sliceWidth = DIMENSION / this.rays.length;
+        // wall portion width
+        const portionWidth = DIMENSION / this.rays.length;
 
         // cast rays
         const cast = this.cast(walls);
@@ -228,10 +229,9 @@ class Source
                 push();
                 translate(DIMENSION, 0);
                 rectMode(CENTER);
-                rect(i * sliceWidth + sliceWidth / 2, DIMENSION / 2, sliceWidth + 1, boundaryHeight);
+                rect(i * portionWidth + portionWidth / 2, DIMENSION / 2, portionWidth + 1, boundaryHeight);
                 pop();
             }
         }
     }
-
 }
