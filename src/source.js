@@ -197,40 +197,45 @@ class Source
         ellipse(this.origin.x, this.origin.y, 10, 10);
 
         // wall portion width
-        const portionWidth = DIMENSION / this.rays.length;
+        const portionWidth = windowWidth / this.rays.length;
 
         // cast rays
         const cast = this.cast(walls);
 
-        // fill renderization background
-        push();
-        translate(DIMENSION, 0);
-        rectMode(CORNER);
-        fill(BACKGROUND);
-        rect(0, 0, DIMENSION, DIMENSION);
-        pop();
+        // fill background
+        background(BACKGROUND);
 
         // for each ray
         for(let i=0; i<this.rays.length; i++)
         {
-            // intersection was found: render light ray
+            // intersection was found: render wall
             if(cast.ends[i])
             {
-                // render raycasting animation
-                this.rays[i].render(this.origin, cast.ends[i]);
+                // get maximum casted ray distance
+                const maxDistance = windowWidth * windowHeight;
 
                 // compute slice brightness and height
-                const brightness = map(Math.min(cast.distances[i] * cast.distances[i], DIMENSION * DIMENSION), 0, DIMENSION * DIMENSION, 200, 0);
-                const boundaryHeight = map(Math.min(cast.distances[i], DIMENSION), 0, DIMENSION, DIMENSION, 0);
+                const brightness = map(Math.min(cast.distances[i] * cast.distances[i], maxDistance), 0, maxDistance, 255, 0);
+                const boundaryHeight = map(Math.min(cast.distances[i], windowHeight), 0, windowHeight, windowHeight, 0);
 
                 // render visualization
                 fill(brightness);
                 noStroke();
                 push();
-                translate(DIMENSION, 0);
                 rectMode(CENTER);
                 rect(i * portionWidth + portionWidth / 2, DIMENSION / 2, portionWidth + 1, boundaryHeight);
                 pop();
+            }
+        }
+
+        // for each ray
+        for(let i=0; i<this.rays.length; i++)
+        {
+            // intersection was found: render wall
+            if(cast.ends[i])
+            {
+                // render raycasting animation
+                this.rays[i].render(this.origin, cast.ends[i]);
             }
         }
     }

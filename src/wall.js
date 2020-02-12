@@ -53,31 +53,31 @@ class Wall {
 
         // create scene borders
         begin = createVector(0, 0);
-        end = createVector(DIMENSION, 0);
+        end = createVector(windowWidth, 0);
         walls.push(new Wall(begin, end));
 
-        begin = createVector(DIMENSION, 0);
-        end = createVector(DIMENSION, DIMENSION);
+        begin = createVector(windowWidth, 0);
+        end = createVector(windowWidth, windowHeight);
         walls.push(new Wall(begin, end));
 
-        begin = createVector(DIMENSION, DIMENSION);
-        end = createVector(0, DIMENSION);
+        begin = createVector(windowWidth, windowHeight);
+        end = createVector(0, windowHeight);
         walls.push(new Wall(begin, end));
 
-        begin = createVector(0, DIMENSION);
+        begin = createVector(0, windowHeight);
         end = createVector(0, 0);
         walls.push(new Wall(begin, end));
 
         // create walls and add to array
         for(let i=0; i<n; i++)
         {
-            const beginX = int(random(0, DIMENSION));
-            const beginY = int(random(0, DIMENSION));
-            const endX = int(random(0, DIMENSION));
-            const endY = int(random(0, DIMENSION));
+            const beginX = int(random(0, windowWidth));
+            const beginY = int(random(0, windowHeight));
+            const endX = int(random(0, windowWidth));
+            const endY = int(random(0, windowHeight));
 
-            let begin = createVector(beginX, beginY);
-            let end = createVector(endX, endY);
+            const begin = createVector(beginX, beginY);
+            const end = createVector(endX, endY);
 
             walls.push(new Wall(begin, end));
         }

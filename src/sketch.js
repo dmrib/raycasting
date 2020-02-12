@@ -38,7 +38,7 @@ function setup()
     source = new Source(1);
 
     // setup walls
-    walls = Wall.createWalls(8);
+    walls = Wall.createWalls(15);
 }
 
 /**
