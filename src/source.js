@@ -211,8 +211,8 @@ class Source
             // intersection was found: render wall
             if(cast.ends[i])
             {
-                // get maximum casted ray distance
-                const maxDistance = windowWidth * windowHeight;
+                // get maximum casted ray distance heuristic
+                const maxDistance = (windowWidth * windowHeight) / 2;
 
                 // compute slice brightness and height
                 const brightness = map(Math.min(cast.distances[i] * cast.distances[i], maxDistance), 0, maxDistance, 255, 0);
